@@ -1,11 +1,13 @@
 package com.example.clinicaOdontologicaConORM.controllers.impl;
 
 import com.example.clinicaOdontologicaConORM.controllers.ControllerInterface;
-import com.example.clinicaOdontologicaConORM.persistance.entities.Paciente;
-import com.example.clinicaOdontologicaConORM.services.impl.PacienteService;
+import com.example.clinicaOdontologicaConORM.persistence.entities.Paciente;
+import com.example.clinicaOdontologicaConORM.service.impl.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.apache.log4j.Logger;
+
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,40 +19,59 @@ public class PacienteController implements ControllerInterface<Paciente> {
     @Autowired
     PacienteService service;
 
+    private static final Logger logger = Logger.getLogger(PacienteController.class);
 
     @Override
     @PostMapping("/crear")
     public ResponseEntity<Paciente> crearEnBDD(@RequestBody Paciente paciente) {
-        ResponseEntity<Paciente> response;
+        ResponseEntity<Paciente> response = ResponseEntity.badRequest().body(paciente);
         paciente.setFechaIngreso(LocalDate.now());
         Paciente pacienteInsertado = service.insertar(paciente);
         if (pacienteInsertado != null) {
             response = ResponseEntity.ok(pacienteInsertado);
-        } else {
-            response = ResponseEntity.badRequest().body(paciente);
         }
+
         return response;
     }
 
     @Override
     @GetMapping("/todos")
     public ResponseEntity<List<Paciente>> consultarTodos() {
-        return ResponseEntity.ok(service.obtenerTodos());
+        ResponseEntity<List<Paciente>> lista = null;
+        try{
+            lista = ResponseEntity.ok(service.obtenerTodos());
+        } catch (Exception e) {
+            logger.debug(e.getMessage());
+        }
+        return lista;
     }
 
     @Override
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<String> eliminarDeBDD(@PathVariable Integer id) {
-        return ResponseEntity.ok(service.eliminar(id));
+        ResponseEntity<String> respuesta = null;
+        try{
+            respuesta = ResponseEntity.ok(service.eliminar(id));
+        } catch (Exception e) {
+            logger.debug(e.getMessage());
+        }
+        return respuesta;
     }
 
     @Override
     @PutMapping
     public ResponseEntity<String> actualizarEnBDD(@RequestBody Paciente paciente) {
-        if(paciente.getId() != null && paciente.getDomicilio().getId() != null)
-            return ResponseEntity.ok(service.actualizar(paciente));
-        else
-            return ResponseEntity.ok("No se lograron actualizar los datos del paciente porque falta el id del domicilio o del paciente a actualizar");
+        ResponseEntity<String> respuesta = ResponseEntity.ok("No se lograron actualizar los datos del paciente");
+        try {
+            if(paciente.getId() != null && paciente.getDomicilio().getId() != null){
+                respuesta = ResponseEntity.ok(service.actualizar(paciente));
+            } else {
+                throw new Exception("Id del paciente o del domicilio faltantes");
+            }
+        } catch (Exception e) {
+            logger.debug(e.getMessage());
+        }
+        return respuesta;
     }
 
 }

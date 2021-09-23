@@ -1,11 +1,13 @@
 package com.example.clinicaOdontologicaConORM.controllers.impl;
 
 import com.example.clinicaOdontologicaConORM.controllers.ControllerInterface;
-import com.example.clinicaOdontologicaConORM.persistance.entities.Odontologo;
-import com.example.clinicaOdontologicaConORM.services.impl.OdontologoService;
+import com.example.clinicaOdontologicaConORM.persistence.entities.Odontologo;
+import com.example.clinicaOdontologicaConORM.service.impl.OdontologoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.apache.log4j.Logger;
+
 
 import java.util.List;
 
@@ -16,17 +18,17 @@ public class OdontologoController implements ControllerInterface<Odontologo> {
     @Autowired(required = true)
     OdontologoService service;
 
+    private static final Logger logger = Logger.getLogger(OdontologoController.class);
 
     @Override
     @PostMapping("/crear")
     public ResponseEntity<Odontologo> crearEnBDD(@RequestBody Odontologo odontologo) {
-        ResponseEntity<Odontologo> respuesta = null;
+        ResponseEntity<Odontologo> respuesta = ResponseEntity.badRequest().body(odontologo);;
         Odontologo odontologoInsertado = service.insertar(odontologo);
         if (odontologoInsertado != null){
             respuesta = ResponseEntity.ok(odontologoInsertado);
-        } else {
-            respuesta = ResponseEntity.badRequest().body(odontologo);
         }
+
         return respuesta;
 
     }
@@ -34,23 +36,41 @@ public class OdontologoController implements ControllerInterface<Odontologo> {
     @Override
     @GetMapping("/todos")
     public ResponseEntity<List<Odontologo>> consultarTodos() {
-        return ResponseEntity.ok(service.obtenerTodos());
+        ResponseEntity<List<Odontologo>> lista = null;
+        try {
+            lista = ResponseEntity.ok(service.obtenerTodos());
+        } catch (Exception e) {
+            logger.debug(e.getMessage());
+        }
+        return lista;
     }
 
     @Override
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<String> eliminarDeBDD(@PathVariable Integer id) {
-        return ResponseEntity.ok(service.eliminar(id));
+        ResponseEntity<String> respuesta = ResponseEntity.ok("No existe ningún odontólogo con el id" + id);
+        try {
+            respuesta = ResponseEntity.ok(service.eliminar(id));
+        } catch (Exception e) {
+            logger.debug(e.getMessage());
+        }
+        return respuesta;
     }
 
     @Override
     @PutMapping()
-    public ResponseEntity<?> actualizarEnBDD(@RequestBody Odontologo odontologo) {
-        if (odontologo.getId() != null)
-            return ResponseEntity.ok(service.actualizar(odontologo));
-        else
-            return ResponseEntity.ok("No se lograron actualizar los datos del odontologo porque falta el id a la hora de realizar la consulta");
-
+    public ResponseEntity<String> actualizarEnBDD(@RequestBody Odontologo odontologo) {
+        ResponseEntity<String> respuesta = ResponseEntity.ok("No se lograron actualizar los datos del odontologo");
+        try {
+            if (odontologo.getId() != null){
+                respuesta = ResponseEntity.ok(service.actualizar(odontologo));
+            } else{
+                throw new Exception("Falta el id del odontólogo");
+            }
+        } catch (Exception e) {
+            logger.debug(e.getMessage());
+        }
+        return respuesta;
     }
 
 

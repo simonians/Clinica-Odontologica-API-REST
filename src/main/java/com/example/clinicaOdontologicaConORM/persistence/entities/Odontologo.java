@@ -1,11 +1,14 @@
-package com.example.clinicaOdontologicaConORM.persistance.entities;
+package com.example.clinicaOdontologicaConORM.persistence.entities;
+
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name="odontologos")
+@Getter @Setter
 public class Odontologo {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "odontologo_sequence")
@@ -14,6 +17,9 @@ public class Odontologo {
     private String nombre;
     private String apellido;
     private Integer matricula;
+
+    @OneToMany(mappedBy = "turno")
+    private Set<Turno> turnos;
 
     public Odontologo() {
     }
@@ -24,36 +30,5 @@ public class Odontologo {
         this.matricula = matricula;
     }
 
-    // getters and setters
 
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public Integer getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(Integer matricula) {
-        this.matricula = matricula;
-    }
-
-    // getter id
-
-    public Integer getId() {
-        return id;
-    }
 }
