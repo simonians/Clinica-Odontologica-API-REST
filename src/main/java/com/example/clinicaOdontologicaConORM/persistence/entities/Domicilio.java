@@ -1,6 +1,5 @@
 package com.example.clinicaOdontologicaConORM.persistence.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,9 +19,6 @@ public class Domicilio {
     private String localidad;
     private String provincia;
 
-    @OneToOne(mappedBy = "domicilio", fetch = FetchType.LAZY)
-    @JsonIgnore
-    private Paciente paciente;
 
     public Domicilio() {
     }

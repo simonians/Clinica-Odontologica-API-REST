@@ -1,5 +1,6 @@
 package com.example.clinicaOdontologicaConORM.persistence.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,7 +19,8 @@ public class Odontologo {
     private String apellido;
     private Integer matricula;
 
-    @OneToMany(mappedBy = "turno")
+    @OneToMany(mappedBy = "odontologo")
+    @JsonIgnore
     private Set<Turno> turnos;
 
     public Odontologo() {

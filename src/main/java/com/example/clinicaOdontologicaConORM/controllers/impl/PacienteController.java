@@ -1,6 +1,7 @@
 package com.example.clinicaOdontologicaConORM.controllers.impl;
 
 import com.example.clinicaOdontologicaConORM.controllers.ControllerInterface;
+import com.example.clinicaOdontologicaConORM.dto.PacienteDTO;
 import com.example.clinicaOdontologicaConORM.persistence.entities.Paciente;
 import com.example.clinicaOdontologicaConORM.service.impl.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/pacientes")
-public class PacienteController implements ControllerInterface<Paciente> {
+public class PacienteController implements ControllerInterface<PacienteDTO> {
 
     @Autowired
     PacienteService service;
@@ -23,10 +24,10 @@ public class PacienteController implements ControllerInterface<Paciente> {
 
     @Override
     @PostMapping("/crear")
-    public ResponseEntity<Paciente> crearEnBDD(@RequestBody Paciente paciente) {
-        ResponseEntity<Paciente> response = ResponseEntity.badRequest().body(paciente);
+    public ResponseEntity<PacienteDTO> crearEnBDD(@RequestBody PacienteDTO paciente) {
+        ResponseEntity<PacienteDTO> response = null;
         paciente.setFechaIngreso(LocalDate.now());
-        Paciente pacienteInsertado = service.insertar(paciente);
+        PacienteDTO pacienteInsertado = service.insertar(paciente);
         if (pacienteInsertado != null) {
             response = ResponseEntity.ok(pacienteInsertado);
         }
@@ -36,8 +37,8 @@ public class PacienteController implements ControllerInterface<Paciente> {
 
     @Override
     @GetMapping("/todos")
-    public ResponseEntity<List<Paciente>> consultarTodos() {
-        ResponseEntity<List<Paciente>> lista = null;
+    public ResponseEntity<List<PacienteDTO>> consultarTodos() {
+        ResponseEntity<List<PacienteDTO>> lista = null;
         try{
             lista = ResponseEntity.ok(service.obtenerTodos());
         } catch (Exception e) {
@@ -60,10 +61,10 @@ public class PacienteController implements ControllerInterface<Paciente> {
 
     @Override
     @PutMapping
-    public ResponseEntity<String> actualizarEnBDD(@RequestBody Paciente paciente) {
+    public ResponseEntity<String> actualizarEnBDD(@RequestBody PacienteDTO paciente) {
         ResponseEntity<String> respuesta = ResponseEntity.ok("No se lograron actualizar los datos del paciente");
         try {
-            if(paciente.getId() != null && paciente.getDomicilio().getId() != null){
+            if(paciente.getId() != null /*&& paciente.getDomicilio().getId() != null*/){ //HACER VERIFICACION EN EL SERVICE
                 respuesta = ResponseEntity.ok(service.actualizar(paciente));
             } else {
                 throw new Exception("Id del paciente o del domicilio faltantes");

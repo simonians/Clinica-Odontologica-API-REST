@@ -1,46 +1,69 @@
 package com.example.clinicaOdontologicaConORM.service.impl;
 
+import com.example.clinicaOdontologicaConORM.config.SpringConfig;
+import com.example.clinicaOdontologicaConORM.dto.OdontologoDTO;
+import com.example.clinicaOdontologicaConORM.dto.PacienteDTO;
 import com.example.clinicaOdontologicaConORM.persistence.entities.Odontologo;
 import com.example.clinicaOdontologicaConORM.persistence.repository.OdontologoRepository;
-import com.example.clinicaOdontologicaConORM.service.ServiceInterface;
+import com.example.clinicaOdontologicaConORM.service.interfaces.OdontologoServiceInterface;
+import com.example.clinicaOdontologicaConORM.service.interfaces.ServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Service
-public class OdontologoService implements ServiceInterface<Odontologo> {
+public class OdontologoService implements OdontologoServiceInterface {
 
     @Autowired
     OdontologoRepository repository;
 
+    @Autowired
+    SpringConfig mapper;
+
 
     @Override
-    public Odontologo insertar(Odontologo entidad){
-        Odontologo respuesta = repository.save(entidad);
-        return respuesta;
+    public OdontologoDTO insertar(OdontologoDTO entidad){
+        Odontologo odontologo = mapper.getModelMapper().map(entidad, Odontologo.class);
+        return mapper.getModelMapper().map(repository.save(odontologo), OdontologoDTO.class);
+
     }
 
     @Override
-    public List<Odontologo> obtenerTodos() throws Exception{
+    public List<OdontologoDTO> obtenerTodos() throws Exception{
         List<Odontologo> lista = repository.findAll();
         if (lista.size() == 0){
             throw new Exception("No hay odontólogos aún cargados en la base de datos");
         }
-        return lista;
+        return mapper.getModelMapper().map(lista, List.class);
     }
 
     @Override
-    public String actualizar(Odontologo entidad) throws Exception {
+    public String actualizar(OdontologoDTO entidad) throws Exception {
         String respuesta;
-        Odontologo odontologoAModificar = this.buscarPorId(entidad.getId());
-        if(odontologoAModificar != null){
-            repository.save(entidad);
-            respuesta = "Actualización con éxito del odontólogo con id: " + entidad.getId();
+        Optional<Odontologo> odontologoAModificar = repository.findById(entidad.getId());
+        if(odontologoAModificar.isPresent()){
+            repository.save(this.actualizarEnBDD(odontologoAModificar.get(), entidad));
+            respuesta = "Actualización con éxito del odontólogo con id " + entidad.getId();
         }else {
             throw new Exception("No se logró actualizar el odontólogo. El odontólogo con id " + entidad.getId() + " no fue encontrado en la base de datos");
         }
         return respuesta;
+    }
+
+    private Odontologo actualizarEnBDD(Odontologo odontologo, OdontologoDTO odontologoDto) {
+        if (odontologoDto.getNombre() != null) {
+            odontologo.setNombre(odontologoDto.getNombre());
+        }
+        if (odontologoDto.getApellido() != null) {
+            odontologo.setApellido(odontologoDto.getApellido());
+        }
+        if (odontologoDto.getMatricula() != null) {
+            odontologo.setMatricula(odontologoDto.getMatricula());
+        }
+        return odontologo;
     }
 
     @Override
@@ -55,13 +78,13 @@ public class OdontologoService implements ServiceInterface<Odontologo> {
         return respuesta;
     }
 
-    @Override
-    public Odontologo buscarPorId(Integer id) {
-        Odontologo odontologoObtenido = null;
-        if(repository.findById(id).isPresent()){
-            odontologoObtenido = repository.findById(id).get();
-        }
-        return odontologoObtenido;
+    public OdontologoDTO buscarPorId(Integer id){
+        return mapper.getModelMapper().map(repository.findById(id).get(), OdontologoDTO.class);
     }
 
+    @Override
+    public Set<OdontologoDTO> obtenerOdontologosPorSuApellidoLike(String apellidoOdontolog) {
+        Set<Odontologo> odontologos = repository.getOdontologoByApellidoLike(apellidoOdontolog);
+        return mapper.getModelMapper().map(odontologos, Set.class);
+    }
 }

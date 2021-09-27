@@ -1,5 +1,6 @@
 package com.example.clinicaOdontologicaConORM.persistence.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,8 +28,10 @@ public class Paciente {
     @JoinColumn(name="domicilio_id", referencedColumnName = "id",nullable = false)
     private Domicilio domicilio;
 
+
     //Relacion de UN paciente tiene MUCHOS turnos
-    @OneToMany(mappedBy = "turno")
+    @OneToMany(mappedBy = "paciente")
+    @JsonIgnore
     private Set<Turno> turnos;
 
 
@@ -42,6 +45,8 @@ public class Paciente {
 
     public Paciente() {
     }
+
+
 
 
 }

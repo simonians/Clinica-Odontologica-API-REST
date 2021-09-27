@@ -1,7 +1,7 @@
 package com.example.clinicaOdontologicaConORM.controllers.impl;
 
 import com.example.clinicaOdontologicaConORM.controllers.ControllerInterface;
-import com.example.clinicaOdontologicaConORM.persistence.entities.Odontologo;
+import com.example.clinicaOdontologicaConORM.dto.OdontologoDTO;
 import com.example.clinicaOdontologicaConORM.service.impl.OdontologoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,10 +10,11 @@ import org.apache.log4j.Logger;
 
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/odontologos")
-public class OdontologoController implements ControllerInterface<Odontologo> {
+public class OdontologoController implements ControllerInterface<OdontologoDTO> {
 
     @Autowired(required = true)
     OdontologoService service;
@@ -22,9 +23,9 @@ public class OdontologoController implements ControllerInterface<Odontologo> {
 
     @Override
     @PostMapping("/crear")
-    public ResponseEntity<Odontologo> crearEnBDD(@RequestBody Odontologo odontologo) {
-        ResponseEntity<Odontologo> respuesta = ResponseEntity.badRequest().body(odontologo);;
-        Odontologo odontologoInsertado = service.insertar(odontologo);
+    public ResponseEntity<OdontologoDTO> crearEnBDD(@RequestBody OdontologoDTO odontologo) {
+        ResponseEntity<OdontologoDTO> respuesta = ResponseEntity.badRequest().body(odontologo);;
+        OdontologoDTO odontologoInsertado = service.insertar(odontologo);
         if (odontologoInsertado != null){
             respuesta = ResponseEntity.ok(odontologoInsertado);
         }
@@ -35,8 +36,8 @@ public class OdontologoController implements ControllerInterface<Odontologo> {
 
     @Override
     @GetMapping("/todos")
-    public ResponseEntity<List<Odontologo>> consultarTodos() {
-        ResponseEntity<List<Odontologo>> lista = null;
+    public ResponseEntity<List<OdontologoDTO>> consultarTodos() {
+        ResponseEntity<List<OdontologoDTO>> lista = null;
         try {
             lista = ResponseEntity.ok(service.obtenerTodos());
         } catch (Exception e) {
@@ -59,7 +60,7 @@ public class OdontologoController implements ControllerInterface<Odontologo> {
 
     @Override
     @PutMapping()
-    public ResponseEntity<String> actualizarEnBDD(@RequestBody Odontologo odontologo) {
+    public ResponseEntity<String> actualizarEnBDD(@RequestBody OdontologoDTO odontologo) {
         ResponseEntity<String> respuesta = ResponseEntity.ok("No se lograron actualizar los datos del odontologo");
         try {
             if (odontologo.getId() != null){
@@ -71,6 +72,29 @@ public class OdontologoController implements ControllerInterface<Odontologo> {
             logger.debug(e.getMessage());
         }
         return respuesta;
+    }
+
+    @GetMapping("/apellidos/{apellido}")
+    public ResponseEntity<?> obtenerOdontologosPorApellidoEnElPathLike(@PathVariable String apellido){
+        ResponseEntity<Set<OdontologoDTO>> listaOdontologs = null;
+        try {
+            listaOdontologs = ResponseEntity.ok(service.obtenerOdontologosPorSuApellidoLike(apellido));
+        } catch (Exception e) {
+            logger.debug(e.getMessage());
+        }
+        return listaOdontologs;
+    }
+
+    // Lo hacemos con request param para tener otra forma de listarlos
+    @GetMapping("/apellidos")
+    public ResponseEntity<?> obtenerOdontologosPorApellidoLike(@RequestParam String apellido){
+        ResponseEntity<Set<OdontologoDTO>> listaOdontologs = null;
+        try {
+            listaOdontologs = ResponseEntity.ok(service.obtenerOdontologosPorSuApellidoLike(apellido));
+        } catch (Exception e) {
+            logger.debug(e.getMessage());
+        }
+        return listaOdontologs;
     }
 
 
