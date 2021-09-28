@@ -37,3 +37,6 @@
 [http-nio-8082-exec-4] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No value present
 [http-nio-8082-exec-2] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - The given id must not be null!; nested exception is java.lang.IllegalArgumentException: The given id must not be null!
 [http-nio-8082-exec-3] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No class com.example.clinicaOdontologicaConORM.persistence.entities.Turno entity with id 1 exists!
+[http-nio-8088-exec-2] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay odontólogos aún cargados en la base de datos
+[http-nio-8088-exec-5] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay odontólogos aún cargados en la base de datos
+[http-nio-8082-exec-1] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay odontólogos aún cargados en la base de datos

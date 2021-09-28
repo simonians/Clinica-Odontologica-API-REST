@@ -2,7 +2,6 @@ package com.example.clinicaOdontologicaConORM.controllers.impl;
 
 import com.example.clinicaOdontologicaConORM.controllers.ControllerInterface;
 import com.example.clinicaOdontologicaConORM.dto.PacienteDTO;
-import com.example.clinicaOdontologicaConORM.persistence.entities.Paciente;
 import com.example.clinicaOdontologicaConORM.service.impl.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -23,41 +23,42 @@ public class AppUser implements UserDetails {
     private String email;
     private String password;
     @Enumerated(EnumType.STRING)
-    private AppUserRoles rolesDeUsuario;
+    private AppRoles rolesDeUsuario;
 
     public AppUser() {
     }
 
-    public AppUser(String nombre, String username, String email, String password) {
+    public AppUser(String nombre, String username, String email, String password, AppRoles rolesDeUsuario) {
         this.nombre = nombre;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.rolesDeUsuario = rolesDeUsuario;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority grantedAuthority = new SimpleGrantedAuthority(rolesDeUsuario.name());
+        SimpleGrantedAuthority grantedAuthority = new SimpleGrantedAuthority(rolesDeUsuario.name()); //clase para manejar los roles de usuario
         return Collections.singletonList(grantedAuthority);
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }
