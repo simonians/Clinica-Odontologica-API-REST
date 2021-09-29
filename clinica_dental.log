@@ -40,3 +40,33 @@
 [http-nio-8088-exec-2] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay odontólogos aún cargados en la base de datos
 [http-nio-8088-exec-5] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay odontólogos aún cargados en la base de datos
 [http-nio-8082-exec-1] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay odontólogos aún cargados en la base de datos
+[http-nio-8082-exec-8] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.PacienteController  - No hay pacientes aún cargados en la base de datos
+[http-nio-8082-exec-10] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.PacienteController  - No hay pacientes aún cargados en la base de datos
+[http-nio-8082-exec-6] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - Falta el id del odontólogo
+[http-nio-8082-exec-2] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - Falta el id del odontólogo
+[http-nio-8082-exec-4] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay odontólogos aún cargados en la base de datos
+[http-nio-8082-exec-7] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No se logró eliminar el odontologo de la base de datos. El id 1 no fue encontrado.
+[http-nio-8082-exec-5] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay turnos aún cargados
+[http-nio-8082-exec-5] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay turnos aún cargados
+[http-nio-8082-exec-6] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay turnos aún cargados
+[http-nio-8082-exec-6] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - El paciente u odontologo no fueron encontrados en la base de datos
+[http-nio-8082-exec-7] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No fue encontrado el paciente con id 10
+[http-nio-8082-exec-8] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No fue encontrado el odontologo con id 10
+[http-nio-8082-exec-6] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay turnos aún cargados
+[http-nio-8082-exec-7] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay turnos aún cargados
+[http-nio-8082-exec-8] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay turnos aún cargados
+[http-nio-8082-exec-9] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay turnos aún cargados
+[http-nio-8082-exec-2] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay turnos aún cargados
+[http-nio-8082-exec-4] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay turnos aún cargados
+[http-nio-8082-exec-7] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay turnos aún cargados
+[http-nio-8082-exec-6] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay turnos aún cargados
+[http-nio-8082-exec-6] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay turnos aún cargados
+[http-nio-8082-exec-7] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay turnos aún cargados
+[http-nio-8082-exec-8] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay turnos aún cargados
+[http-nio-8082-exec-9] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay turnos aún cargados
+[http-nio-8082-exec-5] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - El paciente u odontologo no fueron encontrados en la base de datos
+[http-nio-8082-exec-6] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No fue encontrado el odontologo con id 10
+[http-nio-8082-exec-7] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No fue encontrado el paciente con id 100
+[http-nio-8082-exec-8] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No fue encontrado el paciente con id 100
+[http-nio-8082-exec-1] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - El odontologo con id 1 ya tiene un turno agendado en la fecha 2021-10-10
+[http-nio-8082-exec-2] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - Faltan introducir el id del paciente u odontologo para crear el turno

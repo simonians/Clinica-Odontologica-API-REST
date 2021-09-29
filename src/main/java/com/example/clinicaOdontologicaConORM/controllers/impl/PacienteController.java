@@ -2,6 +2,8 @@ package com.example.clinicaOdontologicaConORM.controllers.impl;
 
 import com.example.clinicaOdontologicaConORM.controllers.ControllerInterface;
 import com.example.clinicaOdontologicaConORM.dto.PacienteDTO;
+import com.example.clinicaOdontologicaConORM.exceptions.BadRequestException;
+import com.example.clinicaOdontologicaConORM.exceptions.ResourceNotFoundException;
 import com.example.clinicaOdontologicaConORM.service.impl.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -36,40 +38,24 @@ public class PacienteController implements ControllerInterface<PacienteDTO> {
 
     @Override
     @GetMapping("/todos")
-    public ResponseEntity<List<PacienteDTO>> consultarTodos() {
-        ResponseEntity<List<PacienteDTO>> lista = null;
-        try{
-            lista = ResponseEntity.ok(service.obtenerTodos());
-        } catch (Exception e) {
-            logger.debug(e.getMessage());
-        }
-        return lista;
+    public ResponseEntity<List<PacienteDTO>> consultarTodos() throws BadRequestException {
+        return ResponseEntity.ok(service.obtenerTodos());
     }
 
     @Override
     @DeleteMapping("/eliminar/{id}")
-    public ResponseEntity<String> eliminarDeBDD(@PathVariable Integer id) {
-        ResponseEntity<String> respuesta = null;
-        try{
-            respuesta = ResponseEntity.ok(service.eliminar(id));
-        } catch (Exception e) {
-            logger.debug(e.getMessage());
-        }
-        return respuesta;
+    public ResponseEntity<String> eliminarDeBDD(@PathVariable Integer id) throws ResourceNotFoundException {
+        return ResponseEntity.ok(service.eliminar(id));
     }
 
     @Override
     @PutMapping
-    public ResponseEntity<String> actualizarEnBDD(@RequestBody PacienteDTO paciente) {
-        ResponseEntity<String> respuesta = ResponseEntity.ok("No se lograron actualizar los datos del paciente");
-        try {
-            if(paciente.getId() != null /*&& paciente.getDomicilio().getId() != null*/){ //HACER VERIFICACION EN EL SERVICE
-                respuesta = ResponseEntity.ok(service.actualizar(paciente));
-            } else {
-                throw new Exception("Id del paciente o del domicilio faltantes");
-            }
-        } catch (Exception e) {
-            logger.debug(e.getMessage());
+    public ResponseEntity<String> actualizarEnBDD(@RequestBody PacienteDTO paciente) throws BadRequestException,ResourceNotFoundException {
+        ResponseEntity<String> respuesta;
+        if(paciente.getId() != null ){
+            respuesta = ResponseEntity.ok(service.actualizar(paciente));
+        } else {
+            throw new BadRequestException("Id del paciente o del domicilio faltantes");
         }
         return respuesta;
     }
