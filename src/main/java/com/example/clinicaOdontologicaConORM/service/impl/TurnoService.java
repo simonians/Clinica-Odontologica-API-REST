@@ -13,7 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,7 +56,7 @@ public class TurnoService implements TurnoServiceInterface {
         return respuesta;
     }
 
-    private Boolean verificarDisponibilidadTurno(Integer idOdontologo, LocalDate fechaTurno) throws ResourceNotFoundException {
+    private Boolean verificarDisponibilidadTurno(Integer idOdontologo, LocalDateTime fechaTurno) throws ResourceNotFoundException {
         Boolean respuesta = true;
         List<Turno> listaTurnos = repository.findAll();
         for (Turno t: listaTurnos){
@@ -72,7 +73,7 @@ public class TurnoService implements TurnoServiceInterface {
     public List<TurnoDTO> obtenerTodos() throws ResourceNotFoundException{
         List<TurnoDTO> turnos = mapper.getModelMapper().map(repository.findAll(), List.class);
         if (turnos.size()<=0){
-            throw new ResourceNotFoundException ("No hay turnos aún cargados");
+            throw new ResourceNotFoundException ("No hay turnos cargados");
         }
         return turnos;
     }
@@ -113,5 +114,23 @@ public class TurnoService implements TurnoServiceInterface {
             throw new ResourceNotFoundException("No fue encontrado el turno en la base de datos");
 
         return respuesta;
+    }
+
+    public List<Turno> turnosProxSemana() throws ResourceNotFoundException {
+        LocalDateTime hoy = LocalDateTime.now();
+        LocalDateTime proximaSemana = hoy.plusDays(7);
+        List<Turno> listaTodosTurnos = repository.findAll();
+        List<Turno> turnosProximaSemana = new ArrayList<>();
+        if (listaTodosTurnos.size() <= 0){
+            throw new ResourceNotFoundException("No hay turnos cargados");
+        }
+        for (Turno turno:listaTodosTurnos){
+            if ((turno.getFecha().isBefore(proximaSemana) && turno.getFecha().isAfter(hoy)) || turno.getFecha().isEqual(hoy) || turno.getFecha().isEqual(proximaSemana)){
+                turnosProximaSemana.add(turno);
+            }
+        }
+        if (turnosProximaSemana.size()<=0)
+            throw new ResourceNotFoundException("No hay turnos agendados para la próxima semana");
+        return turnosProximaSemana;
     }
 }

@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="Turnos")
@@ -15,7 +15,7 @@ public class Turno {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "turno_sequence")
     @SequenceGenerator(name = "turno_sequence", sequenceName = "turno_sequence", allocationSize = 1)
     private Integer id;
-    private LocalDate fecha;
+    private LocalDateTime fecha;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name="paciente_id", referencedColumnName = "id", nullable = false)

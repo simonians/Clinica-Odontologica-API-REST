@@ -11,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/turnos")
@@ -19,8 +18,6 @@ public class TurnoController implements ControllerInterface<TurnoDTO> {
 
     @Autowired(required = true)
     TurnoService service;
-
-    private static final Logger logger = Logger.getLogger(OdontologoController.class);
 
     @Override
     @PostMapping("/crear")
@@ -44,5 +41,10 @@ public class TurnoController implements ControllerInterface<TurnoDTO> {
     @PutMapping("/actualizar")
     public ResponseEntity<?> actualizarEnBDD(@RequestBody TurnoDTO turnoDTO) throws ResourceNotFoundException, BadRequestException{
         return ResponseEntity.ok(service.actualizar(turnoDTO));
+    }
+
+    @GetMapping("/proximaSemana")
+    public ResponseEntity<?> turnosProximaSemana() throws ResourceNotFoundException {
+        return ResponseEntity.ok(service.turnosProxSemana());
     }
 }
