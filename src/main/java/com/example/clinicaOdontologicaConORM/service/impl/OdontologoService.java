@@ -2,11 +2,8 @@ package com.example.clinicaOdontologicaConORM.service.impl;
 
 import com.example.clinicaOdontologicaConORM.config.SpringConfig;
 import com.example.clinicaOdontologicaConORM.dto.OdontologoDTO;
-import com.example.clinicaOdontologicaConORM.dto.PacienteDTO;
-import com.example.clinicaOdontologicaConORM.exceptions.BadRequestException;
 import com.example.clinicaOdontologicaConORM.exceptions.ResourceNotFoundException;
 import com.example.clinicaOdontologicaConORM.persistence.entities.Odontologo;
-import com.example.clinicaOdontologicaConORM.persistence.entities.Paciente;
 import com.example.clinicaOdontologicaConORM.persistence.repository.OdontologoRepository;
 import com.example.clinicaOdontologicaConORM.service.interfaces.OdontologoServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;

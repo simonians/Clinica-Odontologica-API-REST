@@ -5,7 +5,6 @@ import com.example.clinicaOdontologicaConORM.dto.DomicilioDTO;
 import com.example.clinicaOdontologicaConORM.exceptions.ResourceNotFoundException;
 import com.example.clinicaOdontologicaConORM.persistence.entities.Domicilio;
 import com.example.clinicaOdontologicaConORM.persistence.repository.DomicilioRepository;
-import com.example.clinicaOdontologicaConORM.persistence.repository.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

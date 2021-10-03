@@ -116,15 +116,12 @@ public class TurnoService implements TurnoServiceInterface {
         return respuesta;
     }
 
-    public List<Turno> turnosProxSemana() throws ResourceNotFoundException {
+    public List<TurnoDTO> turnosProxSemana() throws ResourceNotFoundException {
         LocalDateTime hoy = LocalDateTime.now();
         LocalDateTime proximaSemana = hoy.plusDays(7);
-        List<Turno> listaTodosTurnos = repository.findAll();
-        List<Turno> turnosProximaSemana = new ArrayList<>();
-        if (listaTodosTurnos.size() <= 0){
-            throw new ResourceNotFoundException("No hay turnos cargados");
-        }
-        for (Turno turno:listaTodosTurnos){
+        List<TurnoDTO> listaTodosTurnos = this.obtenerTodos();
+        List<TurnoDTO> turnosProximaSemana = new ArrayList<>();
+        for (TurnoDTO turno:listaTodosTurnos){
             if ((turno.getFecha().isBefore(proximaSemana) && turno.getFecha().isAfter(hoy)) || turno.getFecha().isEqual(hoy) || turno.getFecha().isEqual(proximaSemana)){
                 turnosProximaSemana.add(turno);
             }

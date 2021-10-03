@@ -10,5 +10,4 @@ public class OdontologoDTO {
     private String apellido;
     private Integer matricula;
 
-
 }

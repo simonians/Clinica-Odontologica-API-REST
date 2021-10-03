@@ -5,9 +5,7 @@ import com.example.clinicaOdontologicaConORM.dto.TurnoDTO;
 import com.example.clinicaOdontologicaConORM.exceptions.BadRequestException;
 import com.example.clinicaOdontologicaConORM.exceptions.ResourceNotFoundException;
 import com.example.clinicaOdontologicaConORM.service.impl.TurnoService;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
