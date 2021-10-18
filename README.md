@@ -1,6 +1,6 @@
 # Proyecto Clínica Odontológica: Proyecto Integrador BackEnd I
 
-El proyecto consiste en una API REST de una clínica odontológica. El sistema permite administrar la reserva de turnos para la clínica. En el mismo se permite: 
+El proyecto consiste en una API REST de una clínica odontológica. En el sistema se permite: 
 - Administrrar datos de odontólgos y pacientes.
 - Validar el ingreso al sistema mediante un login con usuario y password. 
 - Asignar a un paciente un turno con un respectivo odontólogo a una determinada fecha y horario.
@@ -10,7 +10,7 @@ El proyecto consiste en una API REST de una clínica odontológica. El sistema p
 1) Java 11
 2) Maven
 
-## Instalación y correr el proyecto
+## Instalación 
 Java puede instalarse según el sistema operativo en el siguiente link [Instalacion Java 11](https://www.oracle.com/java/technologies/downloads/#java11) y maven a través de [Instalacion Maven](https://maven.apache.org/download.cgi).
 
 ## Primer uso
