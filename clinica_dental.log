@@ -77,3 +77,14 @@
 [http-nio-8082-exec-5] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay turnos aún cargados
 [http-nio-8082-exec-6] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay turnos cargados
 [http-nio-8082-exec-10] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - El odontologo con id 1 ya tiene un turno agendado en la fecha 2021-10-10T16:49:10
+[http-nio-8082-exec-7] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay odontólogos aún cargados en la base de datos
+[http-nio-8082-exec-9] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No se logró eliminar el odontologo de la base de datos. El id 10 no fue encontrado.
+[http-nio-8082-exec-7] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay pacientes aún cargados en la base de datos
+[http-nio-8082-exec-2] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No se logró actualizar el paciente. El paciente con id 10 no fue encontrado en la base de datos
+[http-nio-8082-exec-1] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - El domicilio con id 10 no fue encontrado en la base de datos
+[http-nio-8082-exec-4] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No se logró eliminar el paciente. El id 2 no fue encontrado en la base de datos.
+[http-nio-8082-exec-10] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay turnos cargados
+[http-nio-8082-exec-3] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay odontólogos aún cargados en la base de datos
+[http-nio-8082-exec-2] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No hay turnos cargados
+[http-nio-8082-exec-3] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No se logró actualizar el odontólogo. El odontólogo con id 0 no fue encontrado en la base de datos
+[http-nio-8082-exec-4] DEBUG com.example.clinicaOdontologicaConORM.controllers.impl.OdontologoController  - No se logró actualizar el odontólogo. El odontólogo con id 0 no fue encontrado en la base de datos

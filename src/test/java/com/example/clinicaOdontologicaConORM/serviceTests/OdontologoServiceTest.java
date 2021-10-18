@@ -6,17 +6,15 @@ import com.example.clinicaOdontologicaConORM.persistence.repository.OdontologoRe
 import com.example.clinicaOdontologicaConORM.service.impl.OdontologoService;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-@RunWith(SpringRunner.class)
 @SpringBootTest
 public class OdontologoServiceTest {
 
@@ -26,13 +24,17 @@ public class OdontologoServiceTest {
     @Autowired
     private OdontologoRepository repository;
 
-    private OdontologoDTO o = new OdontologoDTO();
+    private OdontologoDTO o;
 
     public void cargarDataSet () {
         o.setNombre("Simon");
         o.setApellido("Simonian");
         o.setMatricula(1234);
         serviceOdontologoDto.insertar(o);
+    }
+
+    @BeforeEach public void setUp(){
+        o = new OdontologoDTO();
     }
 
     @Test
