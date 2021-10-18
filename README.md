@@ -11,7 +11,9 @@ El proyecto consiste en una API REST de una clínica odontológica. En el sistem
 2) Maven
 
 ## Instalación 
-Java puede instalarse según el sistema operativo en el siguiente link [Instalacion Java 11](https://www.oracle.com/java/technologies/downloads/#java11) y maven a través de [Instalacion Maven](https://maven.apache.org/download.cgi).
+Para la instalación de Java y Maven se recomienda la siguiente documentación:
+- [Instalacion Java 11](https://www.oracle.com/java/technologies/downloads/#java11) 
+- [Instalacion Maven](https://maven.apache.org/download.cgi).
 
 ## Primer uso
 1) Clonar este repositorio. Para esto, correr el siguiente comando en la teminal de tu computadora:
