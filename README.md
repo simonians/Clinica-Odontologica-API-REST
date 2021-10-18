@@ -48,11 +48,20 @@ Clinica-Odontologica-API-REST
 └───src
 └───target
 ```
-5) Ahora, correr el siguiente comando: 
+5) Ahora, mediante los siguientes comandos debería ya estar corriendosé el proyecto en el puerto configurado por defecto (el puerto 8082): 
 ```
 cd target
 java -jar ClinicaOdontologica.jar
 ```
-6) Con esto, el proyecto debería estar corriendo en el puerto configurado por defecto (el puerto 8082). Si se quisiera modificar el puerto debería cambiarse la propiedad server.port=8082 por el puerto donde desee correrse el proyecto. Esto debe hacerse en `/src/resources/application.properties`
+6) Si se quisiera modificar el puerto debería cambiarse la propiedad server.port=8082 por el puerto deseado. Esto debe hacerse en `/src/resources/application.properties`
 
-7) Una vez que la aplicación esté corriendo, puede accederse a la url [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html) y ver la documentación. 
+## Iniciar sesión:
+
+Una vez que el proyecto esta corriendo, dirigirse a la url [http://localhost:8082/login](http://localhost:8082/login) y logearse con el siguiente usuario y contraseña (el mismo tiene acceso de ADMIN, por lo que podrá acceder a todas las funcionalidades del sistema):
+- Usuario --> diego@digital.com
+- Contraseña --> password
+
+## Documentación 
+
+Luego de haberse logueado, se puede accederse a la url [http://localhost:8082/swagger-ui.html](http://localhost:8082/swagger-ui.html) y ver la documentación del proyecto.
+
